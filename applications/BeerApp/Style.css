@@ -1,0 +1,9 @@
+.section{
+    display: inline-block;
+    height: 100%;
+    width: 33%;
+    border: 1px solid;
+    overflow: auto;
+    padding: 10px;
+    /* margin: 15px; */
+}

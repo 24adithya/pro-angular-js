@@ -1,0 +1,7 @@
+{
+	"beerType": "Lager",
+	"quantity": 3,
+	"beerTypes": ["Brown", "Lager"],
+	"brandNames": ["Kingfisher Strong", "Tuborg"]
+
+}
