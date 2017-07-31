@@ -36,7 +36,37 @@ todoApp.controller('todoController', ['$scope','todoService', function($scope, t
 	}
 
 	function getSuccess(getResponse) {
-		console.log('successful response is : '+ getResponse );
+		if(!!getResponse && _.isArray(getResponse)) {
+			// console.log('sample input length is ' + getResponse.length);
+			getChallengeInput();
+		}
+	}
+
+	function getChallengeInput() {
+		var promise = todoService.performChallengeGet();
+		promise.then(getChallengeSuccess, error);	
+	}
+
+	function getChallengeSuccess(response) {
+		if(!!response && _.isArray(response)) {
+			console.log('input length is ' + response.length);
+			postChallengeOutput(response.length);
+		}
+	}
+
+	function postChallengeOutput(count) {
+		var data = {
+			'count': count
+		}
+		var promise = todoService.performChallengePost(data);
+		promise.then(postChallengeSuccess, error);	
+	}
+
+	function postChallengeSuccess(response) {
+		// if(!!response && _.isArray(response)) {
+			console.log('post challenge is successful');
+			// getChallengeInput();
+		// }
 	}
 
 	function error(error) {
