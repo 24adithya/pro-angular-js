@@ -1,5 +1,5 @@
-var todoApp = angular.module("todoApp", []);
-todoApp.controller('todoController', ['$scope', function($scope){
+var todoApp = angular.module('todoApp', ['ngResource']);
+todoApp.controller('todoController', ['$scope','todoService', function($scope, todoService){
 	var model = {
 		user: "Adam",
 		items: [{ action: "Buy Flowers", done: false },
@@ -25,5 +25,21 @@ todoApp.controller('todoController', ['$scope', function($scope){
 
 	$scope.todo.addNewItem = function (actionText) {
 		$scope.todo.model.items.push({ action: actionText, done: false });
+	}
+
+	$scope.todo.performHttp = function() {
+		var params = {
+			userId : 'Lmc3Ydm4pi'
+		}
+		var promise = todoService.performGet(params);
+		promise.then(getSuccess, error);
+	}
+
+	function getSuccess(getResponse) {
+		console.log('successful response is : '+ getResponse );
+	}
+
+	function error(error) {
+		console.log(error);
 	}
 }]);
